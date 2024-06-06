@@ -83,22 +83,62 @@ export function sendOtp(email, navigate) {
 //   }
 // }
 
-// export function signUp(firstName,lastName,email,password,confirmPassword,otp,AccountType,Navigate) {
-//   return async (dispatch) => {
-//     const toastId = toast.loading("Loading...");
-//     dispatch(setLoading(true));
-//     try {
-//       console.log("Attempting to sign up with data:", {
-//         AccountType,
-//         firstName,
-//         lastName,
-//         email,
-//         password,
-//         confirmPassword,
-//         otp,
-//       });
 
-//       const response = await apiConnector("POST", SIGNUP_API, {
+
+
+export function signUp(firstName,lastName,email,password,confirmPassword,otp,AccountType,Navigate) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
+    try {
+      console.log("Attempting to sign up with data AuthApi signup  :", {
+        AccountType,
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword,
+        otp,
+      });
+
+      const response = await apiConnector("POST", SIGNUP_API, {
+              firstName,
+              lastName,
+              email,
+              password,
+              confirmPassword,
+              AccountType,
+              otp
+              })
+
+      console.log("SIGNUP API RESPONSE...", response);
+
+      if (!response.data.success) {
+        throw new Error(response.data.message);
+      }
+
+      toast.success("Signup Successful");
+      Navigate("/login");
+    } catch (error) {
+      console.error("SIGNUP API ERROR...", error);
+      toast.error(`Signup Failed: ${error.response ? error.response.data.message : error.message}`);
+      // Optionally navigate back to signup
+      Navigate("/signup");
+    }
+    dispatch(setLoading(false));
+    toast.dismiss(toastId);
+  };
+}
+
+
+
+// export function signUp(firstName, lastName, email, password, confirmPassword, otp, AccountType, Navigate) {
+//   return async (dispatch) => {
+//       const toastId = toast.loading("Loading...");
+//       dispatch(setLoading(true));
+//       try {
+//           // Log the payload being sent
+//           console.log("Attempting to sign up with data:", {
 //               firstName,
 //               lastName,
 //               email,
@@ -106,90 +146,53 @@ export function sendOtp(email, navigate) {
 //               confirmPassword,
 //               AccountType,
 //               otp
-//               })
-
-//       console.log("SIGNUP API RESPONSE...", response);
-
-//       if (!response.data.success) {
-//         throw new Error(response.data.message);
-//       }
-
-//       toast.success("Signup Successful");
-//       Navigate("/login");
-//     } catch (error) {
-//       console.error("SIGNUP API ERROR............", error);
-//       toast.error(`Signup Failed: ${error.response ? error.response.data.message : error.message}`);
-//       // Optionally navigate back to signup
-//       Navigate("/signup");
-//     }
-//     dispatch(setLoading(false));
-//     toast.dismiss(toastId);
-//   };
-// }
-
-
-
-export function signUp(firstName, lastName, email, password, confirmPassword, otp, AccountType, Navigate) {
-  return async (dispatch) => {
-      const toastId = toast.loading("Loading...");
-      dispatch(setLoading(true));
-      try {
-          // Log the payload being sent
-          console.log("Attempting to sign up with data:", {
-              firstName,
-              lastName,
-              email,
-              password,
-              confirmPassword,
-              AccountType,
-              otp
-          });
+//           });
           
 
-          console.log("getting error here")
-          console.log({
-            firstName,
-            lastName,
-            email,
-            password,
-            confirmPassword,
-            AccountType,
-            otp
-        })
-          const response = await apiConnector("POST", "http://localhost:4000/api/v1/auth/signup", {
-              firstName,
-              lastName,
-              email,
-              password,
-              confirmPassword,
-              AccountType,
-              otp
-          });
+//           console.log("getting error here")
+//           console.log({
+//             firstName,
+//             lastName,
+//             email,
+//             password,
+//             confirmPassword,
+//             AccountType,
+//             otp
+//         })
+//           const response = await apiConnector("POST", SIGNUP_API, {
+//               firstName,
+//               lastName,
+//               email,
+//               password,
+//               confirmPassword,
+//               AccountType,
+//               otp
+//           });
 
-          console.log("SIGNUP API RESPONSE...", response);
+//           console.log("SIGNUP API RESPONSE...", response);
 
-          if (!response.data.success) {
-              throw new Error(response.data.message);
-          }
+//           if (!response.data.success) {
+//               throw new Error(response.data.message);
+//           }
 
-          toast.success("Signup Successful");
-          Navigate("/login");
-      } catch (error) {
-          console.error("SIGNUP API ERROR............", error);
+//           toast.success("Signup Successful");
+//           Navigate("/login");
+//       } catch (error) {
+//           console.error("SIGNUP API ERROR............", error);
 
-          // Log the error response for detailed inspection
-          if (error.response) {
-              console.error("Error Response Data:", error.response.data);
-          }
+//           // Log the error response for detailed inspection
+//           if (error.response) {
+//               console.error("Error Response Data:", error.response.data);
+//           }
 
-          toast.error(`Signup Failed: ${error.response ? error.response.data.message : error.message}`);
-          Navigate("/signup");
-      } finally {
-          dispatch(setLoading(false));
-          toast.dismiss(toastId);
-      }
-  };
-}
+//           toast.error(`Signup Failed: ${error.response ? error.response.data.message : error.message}`);
+//           Navigate("/signup");
+//       } finally {
+//           dispatch(setLoading(false));
+//           toast.dismiss(toastId);
+//       }
+//   };
+// }
 
 export function login(email, password, navigate) {
   return async(dispatch) => {

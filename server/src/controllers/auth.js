@@ -73,6 +73,16 @@ exports.signUp = async (req, res) => {
             otp
         } = req.body;
 
+
+        console.log("backend signup",
+            firstName,
+            lastName,
+            email,
+            password,
+            confirmPassword,
+            AccountType,
+            otp
+         )
         // Check if all required fields are provided
         if (!firstName || !lastName || !email || !password || !confirmPassword || !otp || !AccountType) {
             return res.status(403).json({
@@ -101,7 +111,7 @@ exports.signUp = async (req, res) => {
         // Verify OTP
         console.log("Checking OTP for email:", email);
         const otpResponse = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1);
-        console.log("OTP response:", otpResponse);
+        console.log("OTP response:", otpResponse, typeof(otpResponse));
 
         if (otpResponse.length === 0) {
             return res.status(400).json({
@@ -109,8 +119,9 @@ exports.signUp = async (req, res) => {
                 message: "No OTP found for the email"
             });
         }
-
-        if (otp !== otpResponse[0].otp) {
+        console.log(otp,typeof(otp));
+        
+        if (otp != otpResponse[0].otp) {
             return res.status(400).json({
                 success: false,
                 message: "The OTP is not valid"

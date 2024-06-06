@@ -176,7 +176,7 @@ const VerifyOtp = () => {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        console.log("Submitting with data:", {
+        console.log("Submitting with data by verify otp:", {
             firstName, lastName, email, password, confirmPassword, AccountType, otp
         });
         dispatch(signUp(firstName, lastName, email, password, confirmPassword, otp, AccountType, navigate));

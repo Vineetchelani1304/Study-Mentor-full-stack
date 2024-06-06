@@ -112,7 +112,7 @@ const Navbar = () => {
                             </div>
 
                         ) : (
-                            <Link to={link?.path}>
+                            <Link to={link.path}>
                                 <p className={`${ matchRoute(link?.path) ? "text-yellow-500" : "text-white"}`}>
                                     {link.title}
                                 </p>
