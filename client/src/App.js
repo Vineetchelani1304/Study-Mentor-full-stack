@@ -11,6 +11,9 @@ import VerifyOtp from "./pages/VerifyOtp";
 import AboutUs from "./components/core/AboutUsPage/AboutUs";
 import ContactUs from "./components/core/ContactUsPage/ContactUs";
 import Dashboard from "./pages/Dashboard";
+import ErrorPage from "./pages/ErrorPage";
+import PrivateRoute from "./components/core/Dashboard/PrivateRoute";
+import MyProfile from "./components/core/Dashboard/MyProfile";
 function App() {
   return (
     <div className="w-screen min-h-screen bg-black flex flex-col font-inter">
@@ -73,7 +76,19 @@ function App() {
             </OpenRoute>
           }
         />
-        <Route path="dashboard/my-profile" element={<Dashboard/>}/>
+        <Route element={
+          <PrivateRoute>
+            <Dashboard/>  
+          </PrivateRoute>
+        }>
+          <Route path="dashboard/my-profile" element={
+            <PrivateRoute>
+                <MyProfile/>
+            </PrivateRoute>
+        }/>
+        </Route>
+        
+        <Route path="*" element={<ErrorPage/>}/>
       </Routes>
     </div>
   );

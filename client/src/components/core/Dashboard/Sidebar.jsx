@@ -11,6 +11,7 @@ import ConfirmationModal from '../../common/ConfirmationModal'
 const Sidebar = () => {
     const { user, loading: profileLoading } = useSelector((state) => state.profile)
     console.log("printing User", user)
+    console.log("user Acc",user.AccountType)
     const { loading: authLoading } = useSelector((state) => state.auth)
     const [modal, setModal] = useState(null)
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Sidebar = () => {
     }
     return (
         <div>
-            <div className=" flex flex-col min-w-[250px] border-r-[1px] border-slate-700 h-[cal(100vh-3.5rem)] bg-slate-800">
+            <div className=" flex flex-col min-w-[250px] border-r-[1px] border-slate-700 h-[cal(100vh-5.5rem)] bg-slate-800">
                 <div className="flex flex-col ">
                     {
                         sidebarLinks.map((link, index) => {
