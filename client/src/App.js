@@ -10,7 +10,7 @@ import UpdatePassword from "./pages/UpdatePassword";
 import VerifyOtp from "./pages/VerifyOtp";
 import AboutUs from "./components/core/AboutUsPage/AboutUs";
 import ContactUs from "./components/core/ContactUsPage/ContactUs";
-
+import Dashboard from "./pages/Dashboard";
 function App() {
   return (
     <div className="w-screen min-h-screen bg-black flex flex-col font-inter">
@@ -73,6 +73,7 @@ function App() {
             </OpenRoute>
           }
         />
+        <Route path="dashboard/my-profile" element={<Dashboard/>}/>
       </Routes>
     </div>
   );
