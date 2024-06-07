@@ -164,9 +164,7 @@ const Navbar = () => {
                         token && (
                             <>
                                 <ProfileDropDown />
-                                <button onClick={handleLogout} className='border border-slate-700 bg-slate-800 px-[12px] py-[8px] text-slate-100 rounded-md'>
-                                    Logout
-                                </button>
+                                
                             </>
                         )
                     }

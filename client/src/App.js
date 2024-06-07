@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import ErrorPage from "./pages/ErrorPage";
 import PrivateRoute from "./components/core/Dashboard/PrivateRoute";
 import MyProfile from "./components/core/Dashboard/MyProfile";
+import Settings from "./components/core/Dashboard/Settings";
 function App() {
   return (
     <div className="w-screen min-h-screen bg-black flex flex-col font-inter">
@@ -56,7 +57,7 @@ function App() {
           path="verify-email"
           element={
             <OpenRoute>
-              <VerifyOtp/>
+              <VerifyOtp />
             </OpenRoute>
           }
         />
@@ -64,7 +65,7 @@ function App() {
           path="about"
           element={
             <OpenRoute>
-              <AboutUs  />
+              <AboutUs />
             </OpenRoute>
           }
         />
@@ -72,23 +73,25 @@ function App() {
           path="contact"
           element={
             <OpenRoute>
-              <ContactUs  />
+              <ContactUs />
             </OpenRoute>
           }
         />
         <Route element={
           <PrivateRoute>
-            <Dashboard/>  
+            <Dashboard />
           </PrivateRoute>
         }>
           <Route path="dashboard/my-profile" element={
             <PrivateRoute>
-                <MyProfile/>
+              <MyProfile />
             </PrivateRoute>
-        }/>
+          } />
+          <Route path="dashboard/Settings" element={<Settings />} />
+
         </Route>
-        
-        <Route path="*" element={<ErrorPage/>}/>
+
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );
