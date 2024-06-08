@@ -25,11 +25,11 @@ const Sidebar = () => {
     }
     return (
         <div>
-            <div className=" flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-slate-700 bg-slate-800 py-10">
+            <div className=" flex h-[calc(90vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-slate-700 bg-slate-800 py-10">
                 <div className="flex flex-col ">
                     {
                         sidebarLinks.map((link, index) => {
-                            if (link.type !== user.AccountType) return null;
+                            if (link.type && user?.AccountType !== link.type) return null;
                             return (
                                 <SidebarLink key={link.id} link={link} iconName={link.icon} />
                             )

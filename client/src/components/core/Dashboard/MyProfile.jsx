@@ -9,14 +9,14 @@ const MyProfile = () => {
     const { user } = useSelector((state) => state.profile)
     const navigate = useNavigate()
     return (
-        <>
-            <div className=" text-white mx-auto">
+        <div className=" text-white mx-[20%] w-[70%]">
+            <div className="">
                 {/* <Sidebar/> */}
                 <h1 className="mb-14 text-3xl font-medium text-white">
                     My Profile
                 </h1>
                 {/* section 1  */}
-                <div className='flex items-center justify-evenly rounded-md border-[1px] border-slate-700 bg-slate-800 p-8 px-12'>
+                <div className='flex items-center justify-between rounded-md border-[1px] border-slate-700 bg-slate-800 p-8 px-12'>
                     <div className='flex items-center gap-x-4'>
                         <img src={`${user.image}`} alt="" className=" aspect-square w-[78px] rounded-full object-cover" />
                         <div className='space-y-1 mt-6'>
@@ -107,7 +107,7 @@ const MyProfile = () => {
 
             </div>
 
-        </>
+        </div>
     )
 }
 

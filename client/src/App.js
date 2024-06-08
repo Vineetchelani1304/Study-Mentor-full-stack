@@ -96,16 +96,22 @@ function App() {
               <MyProfile />
             </PrivateRoute>
           } />
-          <Route path="dashboard/enrolled-courses" element={<EnrolledCourses/>} />
-          
-          {
+          <Route path="dashboard/Settings" element={<Settings />} />
+          <Route path="dashboard/enrolled-courses" element={<EnrolledCourses />} />
+              <Route path="dashboard/cart" element={<Cart />} />
+          {/* {
             user?.accountType === 'student' && (
               <>
-                <Route path="dashboard/Settings" element={<Settings />} />
+                <Route path="dashboard/enrolled-courses" element={<EnrolledCourses/>} />
                 <Route path="dashboard/cart" element={<Cart/>} />
               </>
             )
-          }
+          } */}
+          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+              
+            </>
+          )}
         </Route>
 
         <Route path="*" element={<ErrorPage />} />
@@ -115,3 +121,6 @@ function App() {
 }
 
 export default App;
+
+
+
