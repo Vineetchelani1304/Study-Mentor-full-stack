@@ -122,3 +122,31 @@ exports.updateDisplayPicture = async (req, res) => {
         })
     }
 };
+
+exports.getEnrolledCourses = async (req, res) => {
+    try {
+      const userId = req.user.id
+      const userDetails = await user.findOne({
+        _id: userId,
+      })
+        .populate("courses")
+        .exec()
+      if (!userDetails) {
+        return res.status(400).json({
+          success: false,
+          message: `Could not find user with id: ${userDetails}`,
+        })
+      }
+      console.log("printing enrolled courses",userDetails.courses)
+      return res.status(200).json({
+        success: true,
+        data: userDetails.courses,
+      })
+    } catch (error) {
+        console.log(error)
+      return res.status(500).json({
+        success: false,
+        message: error.message,
+      })
+    }
+};

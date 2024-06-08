@@ -25,7 +25,7 @@ const MyProfile = () => {
                         </div>
                     </div>
                     <IconButton text="Edit" onClick={() => {
-                        navigate("/dashboard/setting")
+                        navigate("/dashboard/Settings")
                     }}>
                         <RiEditBoxLine />
                     </IconButton>
@@ -34,7 +34,7 @@ const MyProfile = () => {
                     <div className="flex w-full items-center justify-between">
                         <p className="text-lg font-semibold text-white">About</p>
                         <IconButton text="Edit" onClick={() => {
-                            navigate("/dashboard/setting")
+                            navigate("/dashboard/Settings")
                         }}>
                             <RiEditBoxLine />
                         </IconButton>
@@ -55,7 +55,7 @@ const MyProfile = () => {
                             Personal Details
                         </p>
                         <IconButton text="Edit" onClick={() => {
-                            navigate("/dashboard/setting")
+                            navigate("/dashboard/Settings")
                         }}>
                             <RiEditBoxLine />
                         </IconButton>

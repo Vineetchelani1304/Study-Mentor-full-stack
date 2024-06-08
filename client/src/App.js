@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/common/Navbar";
 import OpenRoute from "./components/core/Auth/OpenRoute";
@@ -15,7 +15,16 @@ import ErrorPage from "./pages/ErrorPage";
 import PrivateRoute from "./components/core/Dashboard/PrivateRoute";
 import MyProfile from "./components/core/Dashboard/MyProfile";
 import Settings from "./components/core/Dashboard/Settings";
+import { useDispatch, useSelector } from "react-redux";
+import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
+import { ACCOUNT_TYPE } from "./utils/constants";
+import Cart from "./components/core/Dashboard/Cart";
+
+
 function App() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.profile)
   return (
     <div className="w-screen min-h-screen bg-black flex flex-col font-inter">
       <Navbar />
@@ -87,8 +96,16 @@ function App() {
               <MyProfile />
             </PrivateRoute>
           } />
-          <Route path="dashboard/Settings" element={<Settings />} />
-
+          <Route path="dashboard/enrolled-courses" element={<EnrolledCourses/>} />
+          
+          {
+            user?.accountType === 'student' && (
+              <>
+                <Route path="dashboard/Settings" element={<Settings />} />
+                <Route path="dashboard/cart" element={<Cart/>} />
+              </>
+            )
+          }
         </Route>
 
         <Route path="*" element={<ErrorPage />} />

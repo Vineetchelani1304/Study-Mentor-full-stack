@@ -133,7 +133,7 @@ const Navbar = () => {
                     {
                         user && user?.AccountType !== "instructor" && (
                             <Link to="/dashboard/cart" className='relative'>
-                                <AiOutlineShoppingCart />
+                                <AiOutlineShoppingCart className=' text-white text-lg mx-3'/>
                                 {
                                     totalItems > 0 && (
                                         <span>
